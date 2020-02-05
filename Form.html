@@ -13,10 +13,26 @@
 
 <body>
     <div class="container">
-        <form action="#" novalidate >
+        <form action="#" class="needs-validation" novalidate>
+            <div class="form-group">
+                <label for="nickname">Nickname:</label>
+                <input class="form-control" id=nickname" name="nickname" type="text">
+                <div class="valid-feedback">
+                    Looks good"
+                </div>
+                <div class="invalid-feedback">
+                    
+                </div>
+            </div>
             <div class="form-group">
                 <label for="firstname">First Name:</label>
                 <input class="form-control" id=firstname" name="firstname" type="text">
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+                <div class="invalid-feedback">
+                    Doesn't look good!
+                </div>
             </div>
             <div class="form-group">
                 <label for="lastname">Last Name</label>
@@ -43,7 +59,7 @@
                 <input type="radio" id="n" name="sex" value="n">
             </div>
             <div class="form-group">
-                <select name="languages" id="languages">
+                <select name="languages" id="languages" multiple>
                     <option value="C++">C++</option>
                     <option value="Java">Java</option>
                     <option value="JavaScript">JavaScript</option>
@@ -63,7 +79,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
         crossorigin="anonymous"></script>
-     <script src = "js/Validation.js.js"></script>
+    <script src="js/Validation.js.js"></script>
 </body>
 
 </html>

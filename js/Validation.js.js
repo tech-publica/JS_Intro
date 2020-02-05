@@ -1,5 +1,6 @@
 let form = document.querySelector("form");
 
+let nicknameInput = document.querySelector('[name="nickname"]');
 let firstnameInput = document.querySelector('[name="firstname"]');
 let lastnameInput = document.querySelector('[name="lastname"]');
 let dobInput = document.querySelector('[name="dob"]');
@@ -25,7 +26,45 @@ form.addEventListener("submit", function (evt) {
 
 });
 
+nicknameInput.addEventListener("blur", function() {
+     let xhttp = new XMLHttpRequest();
+     xhttp.onreadystatechange = function() {
+         if(this.readyState == 4 ) {
+             if(this.status = 400) {
+                 console.log(xhttp.response);
+                 validateNickname(xhttp.response);
+                
+                // console.log(xhttp.responseText)
+             } else {
+                 console.log(xhttp.statusText);
+             }
+         }
+     };
+xhttp.open("GET", "nicknames.json", true);
+xhttp.send();
+
+});
+
+function validateNickname(nicknames) {
+    if(nicknames.includes(nicknameInput.value)) {
+        errors.set("nickname", "your nickname is already in use");
+        nicknameInput.classList.add('is-invalid');
+        document.querySelector("[name = nickname] ~ .invalid-feedback")
+        .innerHTML = errors.get("nickname");
+    } else {
+        errors.delete("nickname");
+        document.querySelector("[name = nickname] ~ .invalid-feedback")
+        .innerHTML="";
+        nicknameInput.classList.remove('is-invalid');
+        nicknameInput.classList.add('is-valid');
+    }
+}
+
 function validateLength() {
+    if (!nicknameInput.value || nicknameInput.value.length < 3) {
+        errors.set("nickname", "your nickname is required and must be longer than 3 chars");
+
+    }
     if(!firstnameInput.value || firstnameInput.value.length < 3) {
         errors.set("firstname", "your first name is required and must be longer than 3 chars");
 
